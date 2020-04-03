@@ -1,4 +1,7 @@
+import "./strings.sol";
+
 pragma solidity ^0.4.4;
+
 /*
  *       Copyright© (2018-2020) WeBank Co., Ltd.
  *
@@ -19,7 +22,7 @@ pragma solidity ^0.4.4;
  */
 
 contract EvidenceContract {
-
+    using strings for *;
     // block number map, hash as key
     mapping(string => uint256) changed;
 
@@ -104,4 +107,13 @@ contract EvidenceContract {
             return keccak256(a) == keccak256(b);
         }
     }
+
+   function smt(string msg, string delimiter) returns (string, string, string, string) {
+    var s = msg.toSlice();
+    var delim = delimiter.toSlice();
+    uint256 segmentSize = s.count(delim) + 1;
+
+    return (s.split(delim).toString(), s.split(delim).toString(), s.split(delim).toString(), s.split(delim).toString());
+   }
+    
 }
